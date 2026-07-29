@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom theme overrides for maximum text visibility in light/dark system settings
+# Custom theme overrides for maximum text visibility in light/dark settings
 st.markdown("""
 <style>
     .stApp {
@@ -159,14 +159,7 @@ with col2:
         st.code(summary_text, language="text")
         st.markdown('</div>', unsafe_allow_html=True)
 
-        st.markdown(
-            '<div class="summary-card" style="border-left: 5px solid #1E3A8A;">'
-            '<strong>👩‍🏫 PROFESSIONAL COUNSELING MANDATE & DIRECTIVE:</strong><br>'
-            'For individual psychometric testing, customized multi-year syllabus mapping, and authoritative academic path validation, '
-            'please consult a certified developmental education professional immediately here.'
-            '</div>', 
-            unsafe_allow_html=True
-        )
+        st.markdown('<div class="summary-card" style="border-left: 5px solid #1E3A8A;"><strong>👩‍🏫 PROFESSIONAL COUNSELING MANDATE & DIRECTIVE:</strong><br>For individual psychometric testing, customized multi-year syllabus mapping, and authoritative academic path validation, please consult a certified developmental education professional immediately here.</div>', unsafe_allow_html=True)
         
         parent_email = st.text_input("Enter Parent / School Counselor Email Address to claim custom 30-Day Curated Learning Blueprint File:", key="parent_email")
         submit_btn = st.button("Schedule Free Curated Educational Curriculum Review")
@@ -182,7 +175,3 @@ with col2:
         st.info("← Please configure the child's parameters on the left pane, then click 'Generate Smart Educational Roadmap'.")
 
 # 4. Mandatory Safety Caution & AHS Corporate Marketing Infrastructure Footers
-st.markdown(
-    '<div class="caution-box">'
-    '<strong>⚠️ CRITICAL REGULATORY CAUTION:</strong> This platform operates strictly as an educational roadmap aid, academic milestone data organizer, '
-    'and informational skill mapping dashboard tool. It does not possess child psychology diagnostic status, does not write academic clinical records, '
