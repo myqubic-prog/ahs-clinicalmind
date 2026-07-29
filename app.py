@@ -59,7 +59,7 @@ st.markdown('<div class="main-title">🎓 AHS Horizon</div>', unsafe_allow_html=
 st.markdown('<div class="subtitle">Autonomous Youth Development, Educational Mapping & Smart Career Counseling Engine</div>', unsafe_allow_html=True)
 
 # Two-Column Balanced Dashboard Layout
-col1, col2 = st.columns([2, 3], gap="large")
+col1, col2 = st.columns(2, gap="large")
 
 with col1:
     st.subheader("🤖 Child Profile Assessment")
@@ -104,7 +104,6 @@ with col2:
     if generate_btn:
         st.success(f"📈 Strategic Roadmap Successfully Compiled for {child_name if child_name else 'the Student'}!")
         
-        # 2. Advanced Multi-Tiered Universal Guidance Logic Mapping
         # Calculate dynamic developmental readiness scores mathematically from inputs
         analytical_readiness = min(focus_score * 10 + int(digital_exposure * 5), 100)
         cognitive_load_cap = 35 if focus_score <= 4 else (65 if focus_score <= 7 else 95)
@@ -162,9 +161,13 @@ with col2:
         # Universal Actionable Pitch Generation Summary Output Box
         st.markdown('<div class="summary-card">', unsafe_allow_html=True)
         st.markdown("**📖 Executive Guidance Text Narrative Summary:**")
+        
+        # Correctly format age bracket string extraction
+        age_label = "Age 5" if "Age 5" in age_bracket else ("Age 11" if "Age 11" in age_bracket else "Age 16")
+        
         summary_text = (
-            f"Profile analysis for student [{child_name if child_name else 'Candidate'}] operating at the developmental tier of [{age_bracket.split(' ')[0] + ' ' + age_bracket.split(' ')[1]}] "
-            f"shows a high-potential learning trajectory focused on [{primary_interest}]. Utilizing a [{learning_style.split(' ')[0]}] cognitive intake style with a task focus score of "
+            f"Profile analysis for student [{child_name if child_name else 'Candidate'}] operating at the developmental tier of [{age_label}] "
+            f"shows a high-potential learning trajectory focused on [{primary_interest}]. Utilizing a [{learning_style}] cognitive intake style with a task focus score of "
             f"[{focus_score}/10], the student is optimized for immediate onboarding into our specialized training track: [{primary_rec}]. "
             f"This custom learning framework maximizes future domain capability while maintaining safe screen-time constraints."
         )
