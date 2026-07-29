@@ -65,10 +65,8 @@ with col1:
     st.subheader("🤖 Child Profile Assessment")
     st.write("Configure the child's age, visible interests, and behavior parameters:")
     
-    # Core User Controls
     child_name = st.text_input("Child Name / Reference (Optional)", placeholder="e.g., Alex")
     
-    # The 3 specific core milestone age brackets requested
     age_bracket = st.selectbox(
         "Target Developmental Milestone Age", 
         ["Age 5 (Early Foundation & Cognitive Play)", 
@@ -93,9 +91,7 @@ with col1:
     
     digital_exposure = st.slider("Daily Screen Time / Digital Literacy (Hours)", min_value=0.0, max_value=8.0, value=2.0, step=0.5)
     focus_score = st.slider("Task Focus & Attention Span Metric (1-10 Scale)", min_value=1, max_value=10, value=6)
-    
     notes = st.text_area("Parental Notes / Visible Hobbies", placeholder="Type what toys, topics, or games they naturally gravitate towards during free time...")
-
     generate_btn = st.button("Generate Smart Educational Roadmap →", type="primary")
 
 with col2:
@@ -103,26 +99,20 @@ with col2:
     
     if generate_btn:
         st.success("📈 Strategic Roadmap Successfully Compiled!")
-        
-        # Calculate dynamic developmental readiness scores mathematically from inputs
         analytical_readiness = min(focus_score * 10 + int(digital_exposure * 5), 100)
         cognitive_load_cap = 35 if focus_score <= 4 else (65 if focus_score <= 7 else 95)
         adaptability_rating = min(100 - (focus_score * 3) + 50, 100)
 
-        # High-Impact Performance Metrics View
         m1, m2, m3 = st.columns(3)
         m1.metric(label="Analytical Readiness Index", value=f"{analytical_readiness}%")
         m2.metric(label="Suggested Cognitive Cap", value=f"{cognitive_load_cap}%")
         m3.metric(label="Learning Adaptability Score", value=f"{adaptability_rating}%")
-        
         st.write("---")
         
-        # Age-Specific Advanced Content Mapping Matrices (Universal Deterministic Answers)
         if "Age 5" in age_bracket:
             st.markdown("### 🧠 Age 5 Core Development Roadmap")
             st.info("🎯 **Main Interest & Psychological Focus:** Developing basic spatial awareness, fine motor logic, basic arithmetic sequences, and emotional expression.")
             st.warning("🧩 **What They Should Learn Right Now:** Structural play, pattern recognition, and gamified logic.")
-            
             roadmap_data = {
                 "Recommended Skill / Course": ["ScratchJr Coding Blocks", "Gamified Visual Math", "Interactive Storytelling & Speech", "Tactile Physics & Building Blocks"],
                 "Focus Duration": ["15 mins / Daily", "20 mins / 3x week", "Daily Reading", "Open Play"],
@@ -135,7 +125,6 @@ with col2:
             st.markdown("### 🚀 Age 11 Middle-School Strategic Roadmap")
             st.info("🎯 **Main Interest & Psychological Focus:** Transitioning from concrete thinking to abstract engineering logic, critical reasoning, and team peer communication dynamics.")
             st.warning("💻 **What They Should Learn Right Now:** Intermediate computing scripts, data structures, and systematic reading habits.")
-            
             roadmap_data = {
                 "Recommended Skill / Course": ["Intro to Python via Minecraft/Roblox", "Pre-Algebra & Analytical Logic Puzzles", "Digital Graphic Design (Canva/Figma)", "Public Speaking & Junior Debate"],
                 "Focus Duration": ["2 Hours / Weekly", "45 mins / 3x week", "3 Hours / Weekly", "1 Hour / Weekly"],
@@ -144,11 +133,10 @@ with col2:
             primary_rec = "Intro to Python & Analytical Logic Puzzles"
             age_label = "Age 11"
             
-        else: # Age 16
+        else:
             st.markdown("### 🦅 Age 16 Elite Pre-University Career Runway")
             st.info("🎯 **Main Interest & Psychological Focus:** Hard monetization skills, university profile building, real-world development tech stacks, and career domain specialization.")
             st.warning("⚡ **What They Should Learn Now:** Commercial tools, open-source portfolio contribution, and systematic internship mapping.")
-            
             roadmap_data = {
                 "Recommended Skill / Course": ["Full-Stack Web Dev (HTML, CSS, JS, Python)", "Advanced UI/UX Web App Architecture", "Data Analytics & Spreadsheet Processing", "Technical Freelancing & Portfolio Creation"],
                 "Focus Duration": ["5 Hours / Weekly", "3 Hours / Weekly", "2 Hours / Weekly", "Flexible / Project-based"],
@@ -157,14 +145,11 @@ with col2:
             primary_rec = "Full-Stack Web Development & Portfolio Design"
             age_label = "Age 16"
 
-        # Render the custom customized Data Matrix
         df = pd.DataFrame(roadmap_data)
         st.dataframe(df.style.map(lambda x: "color: var(--text-color);"), use_container_width=True)
         
-        # Universal Actionable Pitch Generation Summary Output Box
         st.markdown('<div class="summary-card">', unsafe_allow_html=True)
         st.markdown("**📖 Executive Guidance Summary:**")
-        
         summary_text = (
             f"Profile analysis for student [{child_name if child_name else 'Candidate'}] operating at the developmental tier of [{age_label}] "
             f"shows a high-potential learning trajectory focused on [{primary_interest}]. Utilizing a [{learning_style}] cognitive intake style with a task focus score of "
@@ -174,7 +159,6 @@ with col2:
         st.code(summary_text, language="text")
         st.markdown('</div>', unsafe_allow_html=True)
 
-        # 3. Interactive Lead Capture and Consultation Request
         st.markdown(
             '<div class="summary-card" style="border-left: 5px solid #1E3A8A;">'
             '<strong>👩‍🏫 PROFESSIONAL COUNSELING MANDATE & DIRECTIVE:</strong><br>'
@@ -184,11 +168,21 @@ with col2:
             unsafe_allow_html=True
         )
         
-        # Completely flattened layout — no nested if/else statements to prevent parsing compiler errors
         parent_email = st.text_input("Enter Parent / School Counselor Email Address to claim custom 30-Day Curated Learning Blueprint File:", key="parent_email")
         submit_btn = st.button("Schedule Free Curated Educational Curriculum Review")
         
-        # One-line evaluation mapping ensures 0% indentation failure rates
-        is_valid_email = "@" in parent_email if parent_email else False
-        
-        if submit_btn and is_valid_email:
+        # Super-flattened, linear status engine to ensure 100% indentation safety
+        if submit_btn:
+            if "@" in parent_email:
+                st.success("✅ Trajectory locked! AHS Nexus will email details within 24 hours.")
+            if "@" not in parent_email:
+                st.error("Please input a valid email address.")
+            
+    else:
+        st.info("← Please configure the child's parameters on the left pane, then click 'Generate Smart Educational Roadmap'.")
+
+# 4. Mandatory Safety Caution & AHS Corporate Marketing Infrastructure Footers
+st.markdown(
+    '<div class="caution-box">'
+    '<strong>⚠️ CRITICAL REGULATORY CAUTION:</strong> This platform operates strictly as an educational roadmap aid, academic milestone data organizer, '
+    'and informational skill mapping dashboard tool. It does not possess child psychology diagnostic status, does not write academic clinical records, '
