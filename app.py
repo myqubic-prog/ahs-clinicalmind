@@ -11,47 +11,47 @@ st.set_page_config(
 
 # Custom theme overrides for maximum text visibility in light/dark system settings
 st.markdown("""
-    <style>
-        .stApp {
-            background-color: var(--background-color, #F8FAFC);
-            color: var(--text-color, #0F172A);
-        }
-        .main-title {
-            font-size: 2.3rem;
-            font-weight: 800;
-            color: #1E3A8A;
-            margin-bottom: 0.2rem;
-        }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #475569;
-            margin-bottom: 2rem;
-        }
-        .solution-box {
-            background-color: #E6F4EA;
-            border-left: 5px solid #10B981;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-            color: #064E3B;
-        }
-        .caution-box {
-            background-color: #FEF2F2;
-            border-left: 5px solid #EF4444;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            color: #7F1D1D;
-            font-size: 0.9rem;
-        }
-        .summary-card {
-            background-color: var(--secondary-background-color, #FFFFFF);
-            border: 1px solid var(--border-color, #E2E8F0);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-    </style>
+<style>
+    .stApp {
+        background-color: var(--background-color, #F8FAFC);
+        color: var(--text-color, #0F172A);
+    }
+    .main-title {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: #1E3A8A;
+        margin-bottom: 0.2rem;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        color: #475569;
+        margin-bottom: 2rem;
+    }
+    .solution-box {
+        background-color: #E6F4EA;
+        border-left: 5px solid #10B981;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 25px;
+        color: #064E3B;
+    }
+    .caution-box {
+        background-color: #FEF2F2;
+        border-left: 5px solid #EF4444;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        color: #7F1D1D;
+        font-size: 0.9rem;
+    }
+    .summary-card {
+        background-color: var(--secondary-background-color, #FFFFFF);
+        border: 1px solid var(--border-color, #E2E8F0);
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+</style>
 """, unsafe_allow_html=True)
 
 # Main Application Branded Header
@@ -102,7 +102,7 @@ with col2:
     st.subheader("📊 AI-Assisted Counseling Matrix")
     
     if generate_btn:
-        st.success(f"📈 Strategic Roadmap Successfully Compiled for {child_name if child_name else 'the Student'}!")
+        st.success("📈 Strategic Roadmap Successfully Compiled!")
         
         # Calculate dynamic developmental readiness scores mathematically from inputs
         analytical_readiness = min(focus_score * 10 + int(digital_exposure * 5), 100)
@@ -129,6 +129,7 @@ with col2:
                 "Expected Core Outcome": ["Understand logic order", "Master number patterns", "Boost vocabulary breadth", "Develop 3D spatial thinking"]
             }
             primary_rec = "ScratchJr Coding Blocks & Tactile Physics"
+            age_label = "Age 5"
             
         elif "Age 11" in age_bracket:
             st.markdown("### 🚀 Age 11 Middle-School Strategic Roadmap")
@@ -141,6 +142,7 @@ with col2:
                 "Expected Core Outcome": ["Understand variable logic", "Advance algebraic thinking", "Master structural UI aesthetics", "Build conversational confidence"]
             }
             primary_rec = "Intro to Python & Analytical Logic Puzzles"
+            age_label = "Age 11"
             
         else: # Age 16
             st.markdown("### 🦅 Age 16 Elite Pre-University Career Runway")
@@ -153,6 +155,7 @@ with col2:
                 "Expected Core Outcome": ["Build production apps", "Design commercial layouts", "Process complex data models", "Launch first freelance income hooks"]
             }
             primary_rec = "Full-Stack Web Development & Portfolio Design"
+            age_label = "Age 16"
 
         # Render the custom customized Data Matrix
         df = pd.DataFrame(roadmap_data)
@@ -160,10 +163,7 @@ with col2:
         
         # Universal Actionable Pitch Generation Summary Output Box
         st.markdown('<div class="summary-card">', unsafe_allow_html=True)
-        st.markdown("**📖 Executive Guidance Text Narrative Summary:**")
-        
-        # Correctly format age bracket string extraction
-        age_label = "Age 5" if "Age 5" in age_bracket else ("Age 11" if "Age 11" in age_bracket else "Age 16")
+        st.markdown("**📖 Executive Guidance Summary:**")
         
         summary_text = (
             f"Profile analysis for student [{child_name if child_name else 'Candidate'}] operating at the developmental tier of [{age_label}] "
@@ -184,7 +184,11 @@ with col2:
             unsafe_allow_html=True
         )
         
-        with st.container():
-            parent_email = st.text_input("Enter Parent / School Counselor Email Address to claim custom 30-Day Curated Learning Blueprint File:", key="parent_email")
-            if st.button("Schedule Free Curated Educational Curriculum Review"):
-                if "@" in parent_email:
+        # Flattened email block layout to 100% prevent sub-indentation parsing compiler crashes
+        parent_email = st.text_input("Enter Parent / School Counselor Email Address to claim custom 30-Day Curated Learning Blueprint File:", key="parent_email")
+        submit_btn = st.button("Schedule Free Curated Educational Curriculum Review")
+        
+        if submit_btn:
+            if "@" in parent_email:
+                st.success("✅ Student educational trajectory successfully locked! An AHS Nexus learning coordinator will email your complete step-by-step PDF roadmap details within 24 hours.")
+            else:
