@@ -1,28 +1,28 @@
 import streamlit as st
 import pandas as pd
 
-# 1. Page Configuration & Professional Slate Styling
+# 1. Page Configuration & Professional Slate Aesthetic Setup
 st.set_page_config(
-    page_title="AHS ClinicalMind - Psychiatric Analytics",
-    page_icon="🩺",
+    page_title="AHS Horizon - Youth Skill & Career Counseling",
+    page_icon="🎓",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# Enforce clean theme injection to fix light/dark mode text blending errors
+# Custom theme overrides for maximum text visibility in light/dark system settings
 st.markdown("""
     <style>
         .stApp {
             background-color: var(--background-color, #F8FAFC);
             color: var(--text-color, #0F172A);
         }
-        .medical-header {
-            font-size: 2.2rem;
-            font-weight: 700;
+        .main-title {
+            font-size: 2.3rem;
+            font-weight: 800;
             color: #1E3A8A;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
         }
-        .medical-subtitle {
+        .subtitle {
             font-size: 1.1rem;
             color: #475569;
             margin-bottom: 2rem;
@@ -44,134 +44,144 @@ st.markdown("""
             color: #7F1D1D;
             font-size: 0.9rem;
         }
-        .professional-box {
+        .summary-card {
+            background-color: var(--secondary-background-color, #FFFFFF);
             border: 1px solid var(--border-color, #E2E8F0);
             padding: 20px;
             border-radius: 8px;
-            background-color: var(--secondary-background-color, #FFFFFF);
-            margin-top: 20px;
+            margin-bottom: 15px;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Main Dashboard App Header
-st.markdown('<div class="medical-header">🩺 AHS ClinicalMind</div>', unsafe_allow_html=True)
-st.markdown('<div class="medical-subtitle">AI-Assisted Psychiatric Intake & Professional Clinical Analytics Platform</div>', unsafe_allow_html=True)
+# Main Application Branded Header
+st.markdown('<div class="main-title">🎓 AHS Horizon</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Autonomous Youth Development, Educational Mapping & Smart Career Counseling Engine</div>', unsafe_allow_html=True)
 
-# Split Layout into two clean visual columns
-col1, col2 = st.columns([1, 1], gap="large")
+# Two-Column Balanced Dashboard Layout
+col1, col2 = st.columns([2, 3], gap="large")
 
 with col1:
-    st.subheader("📋 Patient Clinical Intake Form")
-    st.write("Please populate the administrative baseline parameters below:")
+    st.subheader("🤖 Child Profile Assessment")
+    st.write("Configure the child's age, visible interests, and behavior parameters:")
     
-    # Form Functional Inputs
-    patient_name = st.text_input("Patient Reference / Name (Optional)", placeholder="Anonymized Token or Initials")
-    age_bracket = st.selectbox("Select Patient Age Bracket", ["Pediatric (Ages 0-12)", "Adult (Ages 13-64)", "Geriatric (Ages 65+)"])
-    primary_concern = st.selectbox("Primary Psychological Concern", ["Anxiety/Panic", "Mood/Depression", "Sleep Disruption", "Focus/ADHD", "General Well-being"])
-    duration = st.selectbox("Symptom Duration", ["Less than 30 Days", "1-6 Months", "6-12 Months", "1+ Years"])
+    # Core User Controls
+    child_name = st.text_input("Child Name / Reference (Optional)", placeholder="e.g., Alex")
     
-    sleep_hours = st.slider("Current Daily Sleep (Hours)", min_value=0.0, max_value=12.0, value=7.0, step=0.5)
-    stress_scale = st.slider("Perceived Stress Scale Severity", min_value=1, max_value=10, value=5)
+    # The 3 specific core milestone age brackets requested
+    age_bracket = st.selectbox(
+        "Target Developmental Milestone Age", 
+        ["Age 5 (Early Foundation & Cognitive Play)", 
+         "Age 11 (Middle-School Pivot & Analytical Exploration)", 
+         "Age 16 (Pre-University Career Runway & Specialization)"]
+    )
     
-    life_changes = st.text_area("Recent Life Disruptions or Background Context", placeholder="Type any notable environmental shifts, occupational adjustments, or clinical history context here...")
+    primary_interest = st.selectbox(
+        "Dominant Visible Interest Area", 
+        ["Building & Solving (Engineering/Tech)", 
+         "Art, Writing & Design (Creative Arts)", 
+         "Logic, Math & Numbers (Data/Science)", 
+         "People, Leadership & Communication (Humanities)"]
+    )
+    
+    learning_style = st.selectbox(
+        "Primary Learning Style",
+        ["Visual (Videos, Diagrams, Coding Blocks)", 
+         "Kinesthetic (Hands-on Building, Experiments)", 
+         "Auditory/Verbal (Reading, Telling Stories, Coding Script)"]
+    )
+    
+    digital_exposure = st.slider("Daily Screen Time / Digital Literacy (Hours)", min_value=0.0, max_value=8.0, value=2.0, step=0.5)
+    focus_score = st.slider("Task Focus & Attention Span Metric (1-10 Scale)", min_value=1, max_value=10, value=6)
+    
+    notes = st.text_area("Parental Notes / Visible Hobbies", placeholder="Type what toys, topics, or games they naturally gravitate towards during free time...")
 
-    generate_btn = st.button("Generate Professional Analytics →", type="primary")
+    generate_btn = st.button("Generate Smart Educational Roadmap →", type="primary")
 
 with col2:
-    st.subheader("📊 Psychiatrist Assessment View")
+    st.subheader("📊 AI-Assisted Counseling Matrix")
     
     if generate_btn:
-        # 2. Universal Deterministic Logic Engineering (No AI Guessing)
-        # Mathematical derivation for symptom metrics based on input bounds
-        somatic_tension = min(stress_scale * 10, 100)
+        st.success(f"📈 Strategic Roadmap Successfully Compiled for {child_name if child_name else 'the Student'}!")
         
-        if sleep_hours < 5.0:
-            sleep_latency = 95
-            sleep_status = "Severe"
-        elif sleep_hours < 7.0:
-            sleep_latency = 65
-            sleep_status = "Moderate"
-        else:
-            sleep_latency = 25
-            sleep_status = "Optimal"
-            
-        emotional_disruption = 40 if stress_scale <= 4 else (70 if stress_scale <= 7 else 95)
+        # 2. Advanced Multi-Tiered Universal Guidance Logic Mapping
+        # Calculate dynamic developmental readiness scores mathematically from inputs
+        analytical_readiness = min(focus_score * 10 + int(digital_exposure * 5), 100)
+        cognitive_load_cap = 35 if focus_score <= 4 else (65 if focus_score <= 7 else 95)
+        adaptability_rating = min(100 - (focus_score * 3) + 50, 100)
 
-        # Output Metric Cards
+        # High-Impact Performance Metrics View
         m1, m2, m3 = st.columns(3)
-        m1.metric(label="Emotional Disruption", value=f"{emotional_disruption}%")
-        m2.metric(label="Somatic Tension Factor", value=f"{somatic_tension}%")
-        m3.metric(label="Sleep Latency Score", value=f"{sleep_latency}%", delta=sleep_status, delta_color="inverse")
-
-        # Dynamic Age-Specific Assessment Generation
+        m1.metric(label="Analytical Readiness Index", value=f"{analytical_readiness}%")
+        m2.metric(label="Suggested Cognitive Cap", value=f"{cognitive_load_cap}%")
+        m3.metric(label="Learning Adaptability Score", value=f"{adaptability_rating}%")
+        
         st.write("---")
-        st.markdown("**🎯 Target Demographics Clinical Focus Area:**")
-        if "Pediatric" in age_bracket:
-            st.info("👶 **Pediatric Guidance System**: Prioritize mapping core family environment dynamics, academic performance stress, emotional regulation development milestones, and guardian interactive behavior charts.")
-        elif "Adult" in age_bracket:
-            st.info("💼 **Adult Guidance System**: Prioritize evaluating occupational chronic stressors, burnout indexes, financial baseline anxieties, and professional/personal lifestyle boundary matrices.")
-        else:
-            st.info("🧓 **Geriatric Guidance System**: Prioritize analyzing neurological baseline memory markers, medication interactions/compliance trackers, cognitive longevity indicators, and social isolation frameworks.")
+        
+        # Age-Specific Advanced Content Mapping Matrices (Universal Deterministic Answers)
+        if "Age 5" in age_bracket:
+            st.markdown("### 🧠 Age 5 Core Development Roadmap")
+            st.info("🎯 **Main Interest & Psychological Focus:** Developing basic spatial awareness, fine motor logic, basic arithmetic sequences, and emotional expression.")
+            st.warning("🧩 **What They Should Learn Right Now:** Structural play, pattern recognition, and gamified logic.")
+            
+            roadmap_data = {
+                "Recommended Skill / Course": ["ScratchJr Coding Blocks", "Gamified Visual Math", "Interactive Storytelling & Speech", "Tactile Physics & Building Blocks"],
+                "Focus Duration": ["15 mins / Daily", "20 mins / 3x week", "Daily Reading", "Open Play"],
+                "Expected Core Outcome": ["Understand logic order", "Master number patterns", "Boost vocabulary breadth", "Develop 3D spatial thinking"]
+            }
+            primary_rec = "ScratchJr Coding Blocks & Tactile Physics"
+            
+        elif "Age 11" in age_bracket:
+            st.markdown("### 🚀 Age 11 Middle-School Strategic Roadmap")
+            st.info("🎯 **Main Interest & Psychological Focus:** Transitioning from concrete thinking to abstract engineering logic, critical reasoning, and team peer communication dynamics.")
+            st.warning("💻 **What They Should Learn Right Now:** Intermediate computing scripts, data structures, and systematic reading habits.")
+            
+            roadmap_data = {
+                "Recommended Skill / Course": ["Intro to Python via Minecraft/Roblox", "Pre-Algebra & Analytical Logic Puzzles", "Digital Graphic Design (Canva/Figma)", "Public Speaking & Junior Debate"],
+                "Focus Duration": ["2 Hours / Weekly", "45 mins / 3x week", "3 Hours / Weekly", "1 Hour / Weekly"],
+                "Expected Core Outcome": ["Understand variable logic", "Advance algebraic thinking", "Master structural UI aesthetics", "Build conversational confidence"]
+            }
+            primary_rec = "Intro to Python & Analytical Logic Puzzles"
+            
+        else: # Age 16
+            st.markdown("### 🦅 Age 16 Elite Pre-University Career Runway")
+            st.info("🎯 **Main Interest & Psychological Focus:** Hard monetization skills, university profile building, real-world development tech stacks, and career domain specialization.")
+            st.warning("⚡ **What They Should Learn Now:** Commercial tools, open-source portfolio contribution, and systematic internship mapping.")
+            
+            roadmap_data = {
+                "Recommended Skill / Course": ["Full-Stack Web Dev (HTML, CSS, JS, Python)", "Advanced UI/UX Web App Architecture", "Data Analytics & Spreadsheet Processing", "Technical Freelancing & Portfolio Creation"],
+                "Focus Duration": ["5 Hours / Weekly", "3 Hours / Weekly", "2 Hours / Weekly", "Flexible / Project-based"],
+                "Expected Core Outcome": ["Build production apps", "Design commercial layouts", "Process complex data models", "Launch first freelance income hooks"]
+            }
+            primary_rec = "Full-Stack Web Development & Portfolio Design"
 
-        # Executive Structured Narrative Formatter
-        st.markdown("**📖 Executive Clinical Summary Layout:**")
+        # Render the custom customized Data Matrix
+        df = pd.DataFrame(roadmap_data)
+        st.dataframe(df.style.map(lambda x: "color: var(--text-color);"), use_container_width=True)
+        
+        # Universal Actionable Pitch Generation Summary Output Box
+        st.markdown('<div class="summary-card">', unsafe_allow_html=True)
+        st.markdown("**📖 Executive Guidance Text Narrative Summary:**")
         summary_text = (
-            f"The assessment data tracking for profile [{patient_name if patient_name else 'Anonymized Client'}] indicates an overall timeline of "
-            f"[{duration}] explicitly correlated with [{primary_concern}]. Manifestations present a perceived stress severity index scored at [{stress_scale}/10], "
-            f"triggering a calculated Somatic Tension Factor of [{somatic_tension}%]. Sleep framework patterns tracking shows a baseline of [{sleep_hours} hours] per cycle, "
-            f"resulting in an automated [{sleep_status}] Sleep Latency tracking response pattern."
+            f"Profile analysis for student [{child_name if child_name else 'Candidate'}] operating at the developmental tier of [{age_bracket.split(' ')[0] + ' ' + age_bracket.split(' ')[1]}] "
+            f"shows a high-potential learning trajectory focused on [{primary_interest}]. Utilizing a [{learning_style.split(' ')[0]}] cognitive intake style with a task focus score of "
+            f"[{focus_score}/10], the student is optimized for immediate onboarding into our specialized training track: [{primary_rec}]. "
+            f"This custom learning framework maximizes future domain capability while maintaining safe screen-time constraints."
         )
         st.code(summary_text, language="text")
-        
-        # Dataframe mapping table for export preparation
-        st.markdown("**🔍 Structural Metric Matrix:**")
-        audit_data = {
-            "Clinical Assessment Vector": ["Primary Concern Mapping", "Stress & Coping Infrastructure", "Somatic Expressions", "Sleep Cycle Consistency"],
-            "Functional Severity Status": ["Elevated Risk", "Action Required", f"Score: {somatic_tension}%", sleep_status],
-            "Next Growth Directive": ["Target behavioral cognitive evaluation", "Assess daily workload constraints", "Check physical expressions of tension", "Recommend sleep onset journaling framework"]
-        }
-        df = pd.DataFrame(audit_data)
-        st.dataframe(df.style.map(lambda x: "color: var(--text-color);"), use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
-        # 3. Mandatory Professional Mandate Lead Capture Box
+        # 3. Interactive Lead Capture and Consultation Request
         st.markdown(
-            '<div class="professional-box">'
-            '<strong>👩‍⚕️ PROFESSIONAL MANDATE & TREATMENT DIRECTIVE:</strong><br>'
-            'For authoritative psychiatric evaluation, individual diagnostic validation, and specialized therapeutic treatment plans, '
-            'please consult a certified medical practitioner immediately here.'
+            '<div class="summary-card" style="border-left: 5px solid #1E3A8A;">'
+            '<strong>👩‍🏫 PROFESSIONAL COUNSELING MANDATE & DIRECTIVE:</strong><br>'
+            'For individual psychometric testing, customized multi-year syllabus mapping, and authoritative academic path validation, '
+            'please consult a certified developmental education professional immediately here.'
             '</div>', 
             unsafe_allow_html=True
         )
         
         with st.container():
-            doc_email = st.text_input("Enter Doctor/Clinic Email Address to claim complete PDF report:", key="doc_email_input")
-            if st.button("Schedule Free Practice Infrastructure Review"):
-                if "@" in doc_email:
-                    st.success("✅ Secure clinical profile successfully queued! An AHS Nexus representative will email your infrastructure analysis package shortly.")
-                else:
-                    st.error("Please enter a valid business email address.")
-
-    else:
-        # Default Idle State Display when page is initially loaded
-        st.info("← Please configure the patient intake parameters on the left and click 'Generate Professional Analytics' to launch the clinical matrix view.")
-
-# 4. Mandatory Safety and Marketing Footers
-st.markdown(
-    f'<div class="caution-box">'
-    f'<strong>⚠️ CRITICAL REGULATORY CAUTION:</strong> This software operates strictly as an administrative data organizer, structured '
-    f'informational outline, and clinical visualization aid. It does not possess medical diagnostic capabilities, does not write medical '
-    f'prescriptions, and does not replace human clinical expertise, evaluation, or professional judgment.'
-    f'</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    f'<div class="solution-box">'
-    f'<strong>🚀 DIGITAL SOLUTIONS BY AHS NEXUS:</strong> Need custom, compliant clinical software? '
-    f'<strong>AHS Nexus</strong> (<a href="https://ahsnexus.com" target="_blank" style="color: #064E3B; font-weight: bold;">ahsnexus.com</a>) '
-    f'designs custom, fully secure electronic medical record (EMR) portals, private client dashboards, and automated hospital '
-    f'scheduling management layers for a transparent, customer-friendly flat-fee with absolutely zero recurring monthly licensing charges.'
-    f'</div>',
-    unsafe_allow_html=True
-)
+            parent_email = st.text_input("Enter Parent / School Counselor Email Address to claim custom 30-Day Curated Learning Blueprint File:", key="parent_email")
+            if st.button("Schedule Free Curated Educational Curriculum Review"):
+                if "@" in parent_email:
