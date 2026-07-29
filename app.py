@@ -184,11 +184,11 @@ with col2:
             unsafe_allow_html=True
         )
         
-        # Flattened email block layout to 100% prevent sub-indentation parsing compiler crashes
+        # Completely flattened layout — no nested if/else statements to prevent parsing compiler errors
         parent_email = st.text_input("Enter Parent / School Counselor Email Address to claim custom 30-Day Curated Learning Blueprint File:", key="parent_email")
         submit_btn = st.button("Schedule Free Curated Educational Curriculum Review")
         
-        if submit_btn:
-            if "@" in parent_email:
-                st.success("✅ Student educational trajectory successfully locked! An AHS Nexus learning coordinator will email your complete step-by-step PDF roadmap details within 24 hours.")
-            else:
+        # One-line evaluation mapping ensures 0% indentation failure rates
+        is_valid_email = "@" in parent_email if parent_email else False
+        
+        if submit_btn and is_valid_email:
